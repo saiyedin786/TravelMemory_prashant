@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   backend:
     container_name: node-backend
@@ -9,10 +7,7 @@ services:
     ports:
       - "3001:3001"
     environment:
-      - MONGO_URI="mongodb+srv://admin:admin@cluster0.ns7tmns.mongodb.net/travelmemory"
-    # volumes:
-    #   - ./backend:/app
-    #   - /app/node_modules
+      MONGO_URI: mongodb+srv://admin:admin@cluster0.ns7tmns.mongodb.net/travelmemory
     restart: always
     networks:
       - mynetwork
@@ -25,13 +20,13 @@ services:
     ports:
       - "80:80"
     environment:
-      - REACT_APP_BACKEND_URL="http://node-backend:3001"
+      REACT_APP_BACKEND_URL: http://backend:3001
     depends_on:
       - backend
     restart: always
     networks:
       - mynetwork
+
 networks:
   mynetwork:
     driver: bridge
-      
