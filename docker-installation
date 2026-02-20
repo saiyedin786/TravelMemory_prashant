@@ -142,7 +142,16 @@ pipeline {
                 
             }
         }
+         stage('Deploy') {
+            steps {
+                echo 'Deploy start'
+                sh "docker compose down && docker compose up -d"
+                echo 'Deploy end'
+            }
+        }
+        
     }
 }
+
 
 
