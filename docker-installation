@@ -83,3 +83,7 @@ sudo systemctl status jenkins
 
 sudo usermod -aG jenkins $USER
 newgrp jenkins
+
+sudo usermod -aG docker jenkins
+sudo systemctl restart docker
+sudo systemctl restart jenkins
