@@ -19,7 +19,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        REACT_APP_BACKEND_URL: http://3.81.224.240:3001
+        REACT_APP_BACKEND_URL: http://node-backend:3001
     ports:
       - "80:80"
     #environment:
