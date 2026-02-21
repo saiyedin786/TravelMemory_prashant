@@ -180,3 +180,34 @@ If this works → networking is ✅
 Th
 
 
+ping: not found” (VERY common)
+
+Alpine images (like node:alpine) do not include ping.
+
+Fix for Alpine:
+apk add --no-cache iputils
+
+Then:
+
+ping backend
+❌ 4️⃣ Ping localhost (what it REALLY means)
+ping localhost
+
+
+
+
+Quick Visual (mental diagram)
+docker-compose.yml
+        ↓
+     build args
+        ↓
+     Dockerfile ARG
+        ↓
+     Dockerfile ENV
+        ↓
+     npm run build
+        ↓
+     static JS files
+        ↓
+       browser
+
