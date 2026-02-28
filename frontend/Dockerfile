@@ -1,11 +1,13 @@
 # # Build stage
-# FROM node:24-alpine AS build
-# WORKDIR /app
+FROM node:24-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["npm","start"]
 
-# COPY package*.json ./
-# RUN npm install
 
-# COPY . .
 # ARG REACT_APP_BACKEND_URL
 # ENV REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
 
@@ -21,30 +23,30 @@
 
 # EXPOSE 80
 # CMD ["nginx", "-g", "daemon off;"]
-
+#-------------------------------------
 # Build stage
-FROM node:24-alpine AS build
+# FROM node:24-alpine AS build
 
-WORKDIR /app
+# WORKDIR /app
 
-COPY package*.json ./
-RUN npm install
+# COPY package*.json ./
+# RUN npm install
 
 # ✅ COPY .env BEFORE build
-COPY .env ./
+# COPY .env ./
 
 # Copy rest of the source
-COPY . .
+# COPY . .
 
 # React automatically picks REACT_APP_* vars from .env
-RUN npm run build
+# RUN npm run build
 
 
 # Production stage
-FROM nginx:stable-alpine
+# FROM nginx:stable-alpine
 
-COPY --from=build /app/build /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/nginx.conf
+# COPY --from=build /app/build /usr/share/nginx/html
+# COPY nginx.conf /etc/nginx/nginx.conf
 
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# EXPOSE 80
+# CMD ["nginx", "-g", "daemon off;"]
