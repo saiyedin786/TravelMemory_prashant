@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  namespace: three-tier
+  namespace: travelmemory
   labels:
     role: frontend
     env: demo
@@ -23,10 +23,10 @@ spec:
     spec: 
       containers:
       - name: frontend
-        image: 
+        image: saiyedin786/travelmemoryshubham:frontend
         imagePullPolicy: Always
         env:
           - name: REACT_APP_BACKEND_URL
-            value: "http://api.ismail-profile.online"
+            value: "http://hero.ismail-profile.online"
         ports:
         - containerPort: 80
