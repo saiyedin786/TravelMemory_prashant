@@ -29,4 +29,5 @@ spec:
           - name: REACT_APP_BACKEND_URL
             value: "http://hero.ismail-profile.online"
         ports:
-        - containerPort: 80
+        - containerPort: 3000
+
