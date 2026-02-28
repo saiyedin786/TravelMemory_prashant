@@ -1,13 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: api
-  namespace: three-tier
+  name: backend-deployment
+  namespace: travelmemory
   labels: 
     role: api
     env: demo
 spec: 
-  replicas: 1
+  replicas: 2
   strategy: 
     type: RollingUpdate
     rollingUpdate:
@@ -21,15 +21,13 @@ spec:
       labels:
         role: api
     spec:
-      imagePullSecrets:
-      - name: ecr-registry-secret
       containers:
-      - name: api
-        image: 
+      - name: backend-container
+        image: saiyedin786/travelmemoryshubham:backend
         imagePullPolicy: Always
         env:
           - name: MONGO_URI
-            value: mongodb://mongodb-svc:27017/travelmemory?directConnection=true
+            value: mongodb://mongodb-svc:27017/todo?directConnection=true
           - name: MONGO_USERNAME
             valueFrom:
               secretKeyRef:
@@ -45,13 +43,13 @@ spec:
         livenessProbe: 
           httpGet:
             path: /ok
-            port: 3500
+            port: 3001
           initialDelaySeconds: 2
           periodSeconds: 5
         readinessProbe:
           httpGet:
             path: /ok
-            port: 3500
+            port: 3001
           initialDelaySeconds: 5
           periodSeconds: 5
           successThreshold: 1
