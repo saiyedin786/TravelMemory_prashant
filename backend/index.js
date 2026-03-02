@@ -10,12 +10,12 @@ app.use(cors())
 
 const tripRoutes = require('./routes/trip.routes')
 
-app.use('/trip', tripRoutes) // http://localhost:3001/trip --> POST/GET/GET by ID
+app.use('/api/trip', tripRoutes) // http://localhost:3001/trip --> POST/GET/GET by ID
 
 app.get('/hello', (req,res)=>{
     res.send('Hello World!')
 })
 
-app.listen(PORT, ()=>{
+app.listen(PORT,"0.0.0.0", ()=>{
     console.log(`Server started at http://localhost:${PORT}`)
 })

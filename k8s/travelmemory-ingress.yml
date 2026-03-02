@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: travelmemory-ingress
+  namespace: travelmemory
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      # Backend API (NO rewrite)
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-svc
+            port:
+              number: 3001
+
+      # Frontend
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-svc
+            port:
+              number: 80

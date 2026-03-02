@@ -6,6 +6,7 @@ COPY package*.json ./
 RUN npm install --production
 
 COPY . .
-
+ENV HOST=0.0.0.0
+ENV PORT=3001
 EXPOSE 3001
 CMD ["node", "index.js"]

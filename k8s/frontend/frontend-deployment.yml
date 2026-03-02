@@ -3,16 +3,8 @@ kind: Deployment
 metadata:
   name: frontend
   namespace: travelmemory
-  labels:
-    role: frontend
-    env: demo
 spec: 
   replicas: 1
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 25%
   selector:
     matchLabels: 
       role: frontend
@@ -23,11 +15,8 @@ spec:
     spec: 
       containers:
       - name: frontend
-        image: saiyedin786/travelmemoryshubham:frontend
+        image: saiyedin786/capstone:frontend
         imagePullPolicy: Always
-        env:
-          - name: REACT_APP_BACKEND_URL
-            value: "http://hero.ismail-profile.online"
         ports:
         - containerPort: 3000
 
