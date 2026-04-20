@@ -88,6 +88,7 @@ sudo usermod -aG docker jenkins
 sudo systemctl restart docker
 sudo systemctl restart jenkins
 
+sudo reboot #To make the above changes come in effect
 
 docker compose installation:
 sudo apt-get install docker-compose-v2
